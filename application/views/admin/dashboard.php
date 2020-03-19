@@ -224,31 +224,37 @@
             });
         }
     });
-
-
     /*================================== chart 2 ================================================== */
-    var ctx = document.getElementById('proses').getContext('2d');
-    var myChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Menunggu konfirmasi', 'Dalam Proses', 'Ditunda', 'Ditolak', 'selesai'],
-            datasets: [{
-                data: [12, 19, 25, 8, 10],
-                backgroundColor: [
-                    'yellow', 'blue', 'black', 'red', 'green'
-                ],
+    $.ajax({
+        type: "POST",
+        url: '<?= base_url('pengaduan/chart2'); ?>',
+        contentType: false,
+        processData: false,
+        dataType: "JSON",
+        success: function(data) {
+
+            var ctx = document.getElementById('proses').getContext('2d');
+            var myChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: data.label,
+                    datasets: [{
+                        data: data.nilai,
+                        backgroundColor: data.warna,
 
 
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
-                }]
-            }
+                    }]
+                },
+                // options: {
+                //     scales: {
+                //         yAxes: [{
+                //             ticks: {
+                //                 beginAtZero: true
+                //             }
+                //         }]
+                //     }
+                // }
+            });
         }
     });
 </script>

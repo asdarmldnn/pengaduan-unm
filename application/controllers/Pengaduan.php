@@ -196,8 +196,26 @@ class Pengaduan extends CI_Controller
     public function chart2()
     {
         // $role =  $_SESSION['role_id'];
+        $label = array();
+        $nilai = array();
+        $warna = array();
+
         $role = 3;
-        $load_data = $this->db->query("SELECT  COUNT(*) AS nilai FROM tbl_pengaduan WHERE jns_pengaduan=$role GROUP BY status");
+        $load_data = $this->db->query("SELECT   COUNT(*) AS nilai, status  FROM tbl_pengaduan WHERE jns_pengaduan=3 GROUP BY status");
+        foreach ($load_data->result() as $row) {
+            $label[] = label($row->status);
+            $nilai[] = $row->nilai;
+            $warna[] = warna($row->status);
+        };
+
+        $result  = array(
+            'nilai' => $nilai,
+            'label' => $label,
+            'warna' => $warna,
+
+        );
+
+        echo json_encode($result);
     }
 
 
