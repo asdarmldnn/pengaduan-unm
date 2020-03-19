@@ -484,18 +484,18 @@
 
                  if (data.status_r == 1) {
                      $("#hidden_m").hide();
-                     return $('#status_d').html('<p class="note note-warning" style="padding-left: 16px"><strong>Menunggu Konfirmasi</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum enim iure suscipit blanditiis veritatis dolorum non dolore consequuntur nesciunt doloremque repudiandae ullam, quae alias eaque amet mollitia voluptas modi! Quas.<br> <a class="btn btn-warning btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
+                     return $('#status_d').html('<p class="note note-warning" style="padding-left: 16px"><strong>Menunggu Konfirmasi</strong><br>' + data.pesan + '<br> <a class="btn btn-warning btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
 
                  } else if (data.status_r == 2) {
                      $("#hidden_m").hide();
-                     return $('#status_d').html('<p class="note note-primary" style="padding-left: 16px"><strong>Dalam Proses</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum enim iure suscipit blanditiis veritatis dolorum non dolore consequuntur nesciunt doloremque repudiandae ullam, quae alias eaque amet mollitia voluptas modi! Quas.<br> <a class="btn btn-info btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
+                     return $('#status_d').html('<p class="note note-primary" style="padding-left: 16px"><strong>Dalam Proses</strong><br>' + data.pesan + '<br> <a class="btn btn-info btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
                  } else if (data.status_r == 3) {
-                     return $('#status_d').html('<p class="note note-danger" style="padding-left: 16px"><strong>Ditolak</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum enim iure suscipit blanditiis veritatis dolorum non dolore consequuntur nesciunt doloremque repudiandae ullam, quae alias eaque amet mollitia voluptas modi! Quas.<br> <a class="btn btn-danger btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
+                     return $('#status_d').html('<p class="note note-danger" style="padding-left: 16px"><strong>Ditolak</strong><br>' + data.pesan + '<br> <a class="btn btn-danger btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
                  } else if (data.status_r == 4) {
-                     return $('#status_d').html('<p class="note note-dark" style="padding-left: 16px"><strong>Tunda</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum enim iure suscipit blanditiis veritatis dolorum non dolore consequuntur nesciunt doloremque repudiandae ullam, quae alias eaque amet mollitia voluptas modi! Quas.<br> <a class="btn btn-dark btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
+                     return $('#status_d').html('<p class="note note-dark" style="padding-left: 16px"><strong>Tunda</strong><br>' + data.pesan + '<br> <a class="btn btn-dark btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
                  } else {
                      $("#hidden_m").hide();
-                     return $('#status_d').html('<p class="note note-success" style="padding-left: 16px"><strong>Selesai</strong><br>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eum enim iure suscipit blanditiis veritatis dolorum non dolore consequuntur nesciunt doloremque repudiandae ullam, quae alias eaque amet mollitia voluptas modi! Quas.<br> <a class="btn btn-success btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
+                     return $('#status_d').html('<p class="note note-success" style="padding-left: 16px"><strong>Selesai</strong><br>' + data.pesan + '<br> <a class="btn btn-success btn-sm ml-0" role="button" href="#" onclick="editStatus(' + id + '); return false;" alt="Scrollspy ">Edit<i class="fas fa-edit ml-2"></i></a></p>');
                  }
 
 
