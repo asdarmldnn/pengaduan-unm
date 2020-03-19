@@ -1,0 +1,60 @@
+#custom-form-control {
+	padding-bottom: 0.3rem !important;
+	padding-top: 0.2rem !important;
+	padding-left: 0.75rem !important;
+	padding-right: 0.75rem !important;
+	font-size: .7rem !important;
+	background-color: #456185;
+	color: #fff !important;
+	border: 0px !important;
+	/* padding-top: 10px !important; */
+
+}
+
+a #custom-date {
+	/* padding-bottom: 0.3rem !important;
+	padding-top: 0.2rem !important;
+	padding-left: 1.2rem !important;
+	margin-left: 2em;
+	padding-right: 0.75rem !important; */
+	font-size: 1px !important;
+	/* background-color: #456185; */
+	color: #fff !important;
+	border: 0px !important;
+	/* padding-top: 10px !important; */
+
+}
+
+
+#custom-header {
+	padding-top: 18px;
+	background-color: #3a5575 !important;
+	padding-bottom: 0px !important;
+	/* padding-top: 2px !important; */
+	/* font-size: 10px !important; */
+}
+
+#custom-header h5 {
+	padding-top: 4px !important;
+	/* background-color: #3a5575 !important;
+	padding-bottom: 0px !important; */
+	font-size: 14px !important;
+}
+
+
+#custom-button {
+	color: #3a5575 !important;
+	font-weight: 800;
+}
+
+#custom-buttontbl {
+	color: #ffffff !important;
+	background-color: #3a5575;
+	font-weight: 800;
+}
+
+
+.input-group-text {
+	font-size: 12px !important;
+	color: #3a5575;
+}

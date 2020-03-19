@@ -1,0 +1,5 @@
+$this->crud->crud($id, 'id_jns', '', 'tbl_jns_pengaduan', '') delete
+ $this->crud->crud($kode, 'id_jns', $data, 'tbl_jns_pengaduan', 'update') update
+ $this->crud->crud('', '', $data, 'tbl_jns_pengaduan', 'tambah') tambah
+ $this->crud->crud('', '', '', 'tbl_jns_pengaduan', 'all') baca
+ $this->crud->crud($id, 'id_jns', '', 'tbl_jns_pengaduan', 'satu') satu row+array
