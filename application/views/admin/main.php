@@ -138,18 +138,18 @@
 
             <!-- Links -->
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="<?= base_url() ?>/welcome">
+                        <i class="fa fa-home"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Home</span>
+                    </a>
+                </li>
                 <!-- <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fa fa-envelope"></i>
-                            <span class="clearfix d-none d-sm-inline-block">Contact</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link">
-                            <i class="fa fa-gear"></i>
-                            <span class="clearfix d-none d-sm-inline-block">Settings</span>
-                        </a>
-                    </li> -->
+                    <a class="nav-link">
+                        <i class="fa fa-gear"></i>
+                        <span class="clearfix d-none d-sm-inline-block">Settings</span>
+                    </a>
+                </li> -->
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="fa fa-user"></i>

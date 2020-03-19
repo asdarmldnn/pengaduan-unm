@@ -13,6 +13,9 @@ class Welcome extends CI_Controller
 
   public function index()
   {
+    if (!$this->session->userdata('username')) {
+      redirect('login');
+    }
     $a['user'] = $this->db->get_where('tbl_user', ['username' =>
     $this->session->userdata('username')])->row_array();
     $a['page'] = "admin/dashboard";

@@ -10,6 +10,7 @@ class Pengaduan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('crud_model', 'crud');
+        cek_auth();
     }
     public function index()
     {
@@ -39,20 +40,6 @@ class Pengaduan extends CI_Controller
                 ->join("tbl_jns_pengaduan b", "a.jns_pengaduan=b.id_jns", "left") //field yang ada di table user dan nama database dan join
                 ->where("a.id_pengaduan<>'' $where");
         }
-
-
-        // if ($role != 1) {
-        //     // $where += "a.jns_pengaduan = $role ";
-        //     $query = $this->db->select(array('a.id_pengaduan', 'a.waktu', 'a.nama', 'b.nama_jns', 'a.email', 'a.no_iden', 'a.hp', 'a.status', 'a.token'))->from('tbl_pengaduan a')
-        //         ->join("tbl_jns_pengaduan b", "a.jns_pengaduan=b.id_jns", "left") //field yang ada di table user dan nama database dan join
-        //         ->where("a.jns_pengaduan = '$role' $where");
-        // } else {
-        //     $query = $this->db->select(array('a.id_pengaduan', 'a.waktu', 'a.nama', 'b.nama_jns', 'a.email', 'a.no_iden', 'a.hp', 'a.status', 'a.token'))->from('tbl_pengaduan a')
-        //         ->join("tbl_jns_pengaduan b", "a.jns_pengaduan=b.id_jns", "left"); //field yang ada di table user dan nama database dan join
-
-        // }
-
-
 
 
         $column_order = array(null, 'a.waktu', 'a.no_iden', 'a.nama', 'a.email',  'a.hp', 'a.status'); //set column field database for datatable orderable
@@ -162,10 +149,25 @@ class Pengaduan extends CI_Controller
 
     public function chart()
     {
-        // $role =  $_SESSION['role_id'];
-        $role = 3;
-        if ($role == 3) {
+        $role =  $_SESSION['role_id'];
+        if ($role == 2) {
+            $labels = "UMUM HUMAS";
+        } elseif ($role == 3) {
             $labels = "PMB";
+        } elseif ($role == 4) {
+            $labels = "SIA";
+        } elseif ($role == 5) {
+            $labels = "SITRANS";
+        } elseif ($role == 6) {
+            $labels = "JARINGAN";
+        } elseif ($role == 7) {
+            $labels = "EMAIL";
+        } elseif ($role == 8) {
+            $labels = "KTM";
+        } elseif ($role == 9) {
+            $labels = "LMS-SCHOOL";
+        } elseif ($role == 10) {
+            $labels = "PENJAMINAN MUTU";
         }
         $label = array();
         $nilai = array();
@@ -195,13 +197,12 @@ class Pengaduan extends CI_Controller
 
     public function chart2()
     {
-        // $role =  $_SESSION['role_id'];
+        $role =  $_SESSION['role_id'];
         $label = array();
         $nilai = array();
         $warna = array();
 
-        $role = 3;
-        $load_data = $this->db->query("SELECT   COUNT(*) AS nilai, status  FROM tbl_pengaduan WHERE jns_pengaduan=3 GROUP BY status");
+        $load_data = $this->db->query("SELECT   COUNT(*) AS nilai, status  FROM tbl_pengaduan WHERE jns_pengaduan=$role GROUP BY status");
         foreach ($load_data->result() as $row) {
             $label[] = label($row->status);
             $nilai[] = $row->nilai;
@@ -524,25 +525,31 @@ class Pengaduan extends CI_Controller
         $tgl1 = $this->crud->rev_date($_REQUEST['tgl1']);
         $tgl2 = $this->crud->rev_date($_REQUEST['tgl2']);
 
-        $role = 3;
+
+        $role = $_SESSION['role_id'];
         $where = '';
-        // $role = $_SESSION['role_id'];
         if ($tgl1 != '' && $tgl2 != '') {
             $where = "AND waktu BETWEEN '$tgl1' AND '$tgl2'";
         }
-        $load_data = $this->db->query("SELECT * FROM tbl_pengaduan JOIN tbl_jns_pengaduan ON tbl_pengaduan.jns_pengaduan=tbl_jns_pengaduan.id_jns WHERE jns_pengaduan='$role' $where");
+        if ($role != 1) {
+            $load_data = $this->db->query("SELECT * FROM tbl_pengaduan JOIN tbl_jns_pengaduan ON tbl_pengaduan.jns_pengaduan=tbl_jns_pengaduan.id_jns WHERE jns_pengaduan='$role' $where");
+        }
+        $load_data = $this->db->query("SELECT * FROM tbl_pengaduan JOIN tbl_jns_pengaduan ON tbl_pengaduan.jns_pengaduan=tbl_jns_pengaduan.id_jns WHERE id_jns<>'' $where");
+
+
 
         foreach ($load_data->result() as $row) {
+            $status = status($row->status);
             $waktu = $row->waktu;
             $rev = explode(' ', $waktu);
             $html .= "<tr>
-					<td align='center' style='mso-number-format:\"\@\";'>" . $this->crud->rev_date2($rev[0]) . ' ' . $rev[1] . "</td>
-					<td align='center' style='mso-number-format:\"\@\";'>$row->nama</td>
-					<td align='center' style='mso-number-format:\"\@\";'>$row->no_iden</td>
-					<td align='center' style='mso-number-format:\"\@\";'>$row->nama_jns</td>
-					<td align='center' style='mso-number-format:\"\@\";'>$row->hp</td>
-					<td align='center' style='mso-number-format:\"\@\";'>$row->deskripsi</td>
-					<td align='center' style='mso-number-format:\"\@\";'>status($row->status)</td>
+					<td style='mso-number-format:\"\@\";'>" . $this->crud->rev_date2($rev[0]) . ' ' . $rev[1] . "</td>
+					<td style='mso-number-format:\"\@\";'>$row->nama</td>
+					<td style='mso-number-format:\"\@\";'>$row->no_iden</td>
+					<td style='mso-number-format:\"\@\";'>$row->nama_jns</td>
+					<td style='mso-number-format:\"\@\";'>$row->hp</td>
+					<td style='mso-number-format:\"\@\";'>$row->deskripsi</td>
+					<td style='mso-number-format:\"\@\";'>$status</td>
 					
 				</tr>";
         }

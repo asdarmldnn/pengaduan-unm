@@ -10,6 +10,7 @@ class Pengaturan extends CI_Controller
     {
         parent::__construct();
         $this->load->model('crud_model', 'crud');
+        cek_auth();
     }
     public function user_role()
     {

@@ -242,7 +242,7 @@
         <footer id="footer">
             <div class="container py-4">
                 <div class="copyright">
-                    &copy; Copyright <strong><span><?= date('Y') ?></span></strong><a href="https://unm.ac.id/"> UNIVERSITAS NEGERI MAKASSAR</a>
+                    &copy; Copyright <strong><span><?= date('Y') ?></span></strong><a href="http://ict.unm.ac.id/"> Divisi Programming - UPT TIK - Universitas Negeri Makassar</a>
                 </div>
                 <!-- <div class="credits">
         Designed by 
