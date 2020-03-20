@@ -34,6 +34,7 @@ class Welcome extends CI_Controller
   public function kirim()
   {
 
+
     $upload_image = $_FILES['file']['name'];
     $nama = $this->input->post('nama');
     $kategori = $this->input->post('kategori');
@@ -46,22 +47,59 @@ class Welcome extends CI_Controller
     $ext =  pathinfo($upload_image, PATHINFO_EXTENSION);
     $hari_ini = date("Y-m-d H:i:s");
 
+    $user = $this->db->get_where('tbl_identitas', ['identitas' => $no_iden])->row_array();
+    if ($kategori == 4) {
 
+      //image
+      if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg' || $ext == 'JPG') {
+        /*----------------jika upload foto------------------------------*/
+        if ($upload_image) {
+          $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+          $config['max_size']      = '1024';
+          $config['encrypt_name']  = true;
+          $config['upload_path']   = './assets/file/';
 
-    //image
-    if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg' || $ext == 'JPG') {
-      /*----------------jika upload foto------------------------------*/
-      if ($upload_image) {
-        $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
-        $config['max_size']      = '1024';
-        $config['encrypt_name']  = true;
-        $config['upload_path']   = './assets/file/';
+          $this->upload->initialize($config);
 
-        $this->upload->initialize($config);
+          if ($this->upload->do_upload('datafile')) {
+            $new_file = $this->upload->data('file_name');
 
-        if ($this->upload->do_upload('datafile')) {
-          $new_file = $this->upload->data('file_name');
+            $tambah = array(
+              'nama' => $nama,
+              'email' => $email,
+              'no_iden' => $no_iden,
+              'hp' => $hp,
+              'jns_pengaduan' => $jns_pengaduan,
+              'deskripsi' => $deskripsi,
+              'token' => $token,
+              'status' => 1,
+              'file' => $new_file,
+              'waktu' => $hari_ini,
+            );
 
+            if ($this->crud->crud('', '', $tambah, 'tbl_pengaduan', 'tambah') == true) {
+              if ($email != '') {
+                $this->_email($email, $token);
+              }
+
+              $return = array(
+                'status'    => true,
+                'message'    => 'Data berhasil disimpan..',
+              );
+            } else {
+              $return = array(
+                'status'    => false,
+                'message'    => 'Terjadi kesalahan..',
+              );
+            };
+          } else {
+            $return = array(
+              'status'  => false,
+              'message'  => 'Foto maksimal 1 mb..',
+            );
+          }
+          /*-----------------jika tdaik upload foto------------------------------*/
+        } else if ($upload_image == '') {
           $tambah = array(
             'nama' => $nama,
             'email' => $email,
@@ -71,7 +109,7 @@ class Welcome extends CI_Controller
             'deskripsi' => $deskripsi,
             'token' => $token,
             'status' => 1,
-            'file' => $new_file,
+            'file' => 'logo.png',
             'waktu' => $hari_ini,
           );
 
@@ -79,7 +117,6 @@ class Welcome extends CI_Controller
             if ($email != '') {
               $this->_email($email, $token);
             }
-
             $return = array(
               'status'    => true,
               'message'    => 'Data berhasil disimpan..',
@@ -90,48 +127,107 @@ class Welcome extends CI_Controller
               'message'    => 'Terjadi kesalahan..',
             );
           };
+        }
+      } else {
+        $return = array(
+          'status'  => false,
+          'message'  => 'Format Foto tidak sesuai..',
+        );
+      }
+    } else {
+      if ($user) {
+        //image
+        if ($ext == 'png' || $ext == 'jpg' || $ext == 'jpeg' || $ext == 'JPG') {
+          /*----------------jika upload foto------------------------------*/
+          if ($upload_image) {
+            $config['allowed_types'] = 'gif|jpg|png|svg|jpeg';
+            $config['max_size']      = '1024';
+            $config['encrypt_name']  = true;
+            $config['upload_path']   = './assets/file/';
+
+            $this->upload->initialize($config);
+
+            if ($this->upload->do_upload('datafile')) {
+              $new_file = $this->upload->data('file_name');
+
+              $tambah = array(
+                'nama' => $nama,
+                'email' => $email,
+                'no_iden' => $no_iden,
+                'hp' => $hp,
+                'jns_pengaduan' => $jns_pengaduan,
+                'deskripsi' => $deskripsi,
+                'token' => $token,
+                'status' => 1,
+                'file' => $new_file,
+                'waktu' => $hari_ini,
+              );
+
+              if ($this->crud->crud('', '', $tambah, 'tbl_pengaduan', 'tambah') == true) {
+                if ($email != '') {
+                  $this->_email($email, $token);
+                }
+
+                $return = array(
+                  'status'    => true,
+                  'message'    => 'Data berhasil disimpan..',
+                );
+              } else {
+                $return = array(
+                  'status'    => false,
+                  'message'    => 'Terjadi kesalahan..',
+                );
+              };
+            } else {
+              $return = array(
+                'status'  => false,
+                'message'  => 'Foto maksimal 1 mb..',
+              );
+            }
+            /*-----------------jika tdaik upload foto------------------------------*/
+          } else if ($upload_image == '') {
+            $tambah = array(
+              'nama' => $nama,
+              'email' => $email,
+              'no_iden' => $no_iden,
+              'hp' => $hp,
+              'jns_pengaduan' => $jns_pengaduan,
+              'deskripsi' => $deskripsi,
+              'token' => $token,
+              'status' => 1,
+              'file' => 'logo.png',
+              'waktu' => $hari_ini,
+            );
+
+            if ($this->crud->crud('', '', $tambah, 'tbl_pengaduan', 'tambah') == true) {
+              if ($email != '') {
+                $this->_email($email, $token);
+              }
+              $return = array(
+                'status'    => true,
+                'message'    => 'Data berhasil disimpan..',
+              );
+            } else {
+              $return = array(
+                'status'    => false,
+                'message'    => 'Terjadi kesalahan..',
+              );
+            };
+          }
         } else {
           $return = array(
             'status'  => false,
-            'message'  => 'Foto maksimal 1 mb..',
+            'message'  => 'Format Foto tidak sesuai..',
           );
         }
-        /*-----------------jika tdaik upload foto------------------------------*/
-      } else if ($upload_image == '') {
-        $tambah = array(
-          'nama' => $nama,
-          'email' => $email,
-          'no_iden' => $no_iden,
-          'hp' => $hp,
-          'jns_pengaduan' => $jns_pengaduan,
-          'deskripsi' => $deskripsi,
-          'token' => $token,
-          'status' => 1,
-          'file' => 'logo.png',
-          'waktu' => $hari_ini,
+      } else {
+        $return = array(
+          'status'  => false,
+          'message'  => 'NIDN/NIP/NIM Anda tidak terdaftar..',
         );
-
-        if ($this->crud->crud('', '', $tambah, 'tbl_pengaduan', 'tambah') == true) {
-          if ($email != '') {
-            $this->_email($email, $token);
-          }
-          $return = array(
-            'status'    => true,
-            'message'    => 'Data berhasil disimpan..',
-          );
-        } else {
-          $return = array(
-            'status'    => false,
-            'message'    => 'Terjadi kesalahan..',
-          );
-        };
       }
-    } else {
-      $return = array(
-        'status'  => false,
-        'message'  => 'Format Foto tidak sesuai..',
-      );
     }
+
 
     echo json_encode($return);
   }

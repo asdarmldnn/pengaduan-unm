@@ -471,8 +471,9 @@
                             Swal.fire({
                                 icon: 'success',
                                 title: 'Terkirim',
-                                text: 'laporan Anda telah kami terkirim....',
+                                text: 'laporan Anda telah terkirim....',
                             }).then((result) => {
+                                $("#label_identitas").html('NIDN<span style="color: rgb(207, 61, 61);"> *</span>');
                                 $('#pratinjauGambar').html('');
                                 $('.custom-file-label').removeClass("selected").html('');
                                 $('#form').each(function() {

@@ -159,33 +159,41 @@
 
 
    ';
-    } ?>
+    } else {
+        echo '
+                <div class="row" id="">
+                <div class="col-md-8">
 
-    <div class="row">
-        <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-body">
 
-            <div class="card">
-                <div class="card-body">
+                            <canvas id="chart1" width="300" height="200"></canvas>
 
-                    <canvas id="chart1" width="300" height="200"></canvas>
+                        
 
-                    <!-- <h4 class="card-title"><a>Card title</a></h4> -->
+                        </div>
+                    </div>
+                </div>
 
+
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            
+                            <canvas id="proses" height="300"></canvas>
+
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+        ';
+    }
+
+    ?>
 
 
-        <div class="col-md-4">
-            <div class="card">
-                <div class="card-body">
-                    <!-- <h4 class="card-title"><a>Card title</a></h4> -->
-                    <canvas id="proses" height="300"></canvas>
 
-                </div>
-            </div>
-        </div>
-    </div>
+
 
 
 

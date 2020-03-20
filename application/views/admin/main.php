@@ -139,7 +139,7 @@
             <!-- Links -->
             <ul class="nav navbar-nav nav-flex-icons ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= base_url() ?>/welcome">
+                    <a class="nav-link" href="<?= base_url() ?>welcome">
                         <i class="fa fa-home"></i>
                         <span class="clearfix d-none d-sm-inline-block">Home</span>
                     </a>
