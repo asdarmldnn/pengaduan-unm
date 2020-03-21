@@ -14,7 +14,7 @@
                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">UMUM HUMAS</div>
                            <div class="h5 mb-0 font-weight-bold text-gray-800">' .  $this->db->query("select * from tbl_pengaduan where jns_pengaduan=2 ")->num_rows() . '</div> </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-calendar fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-users fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
@@ -71,7 +71,7 @@
                            <div class="h5 mb-0 font-weight-bold text-gray-800">' .  $this->db->query('select * from tbl_pengaduan where jns_pengaduan="5" ')->num_rows() . '</div>
                        </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-comments fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-book-open fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
@@ -91,7 +91,7 @@
                            <div class="h5 mb-0 font-weight-bold text-gray-800">' .  $this->db->query('select * from tbl_pengaduan where jns_pengaduan="6" ')->num_rows() . '</div>
                        </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-calendar fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-network-wired fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
@@ -107,7 +107,7 @@
                            <div class="h5 mb-0 font-weight-bold text-gray-800">' .  $this->db->query('select * from tbl_pengaduan where jns_pengaduan="7" ')->num_rows() . '</div>
                        </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-envelope fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
@@ -132,7 +132,7 @@
                            </div>
                        </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-id-card  fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
@@ -148,7 +148,7 @@
                            <div class="h5 mb-0 font-weight-bold text-gray-800">' .  $this->db->query('select * from tbl_pengaduan where jns_pengaduan="9" ')->num_rows() . '</div>
                        </div>
                        <div class="col-auto">
-                           <i style="color: aqua;" class="fas fa-comments fa-2x text-gray-300"></i>
+                           <i style="color: aqua;" class="fas fa-school fa-2x text-gray-300"></i>
                        </div>
                    </div>
                </div>
