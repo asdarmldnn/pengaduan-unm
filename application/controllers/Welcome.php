@@ -237,8 +237,8 @@ class Welcome extends CI_Controller
     $config = [
       'protocol' => 'smtp',
       'smtp_host' => 'ssl://smtp.googlemail.com',
-      'smtp_user' => 'pengaduan@unm.ac.id',
-      'smtp_pass' => 'UNMtetapjaya',
+      'smtp_user' => 'pengadauan@unm.ac.id',
+      'smtp_pass' => 'Mohon Maaf Kaka',
       'smtp_port' => 465,
       'mailtype' => 'html',
       'chartset' => 'utf-8',
